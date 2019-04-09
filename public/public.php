@@ -3,7 +3,7 @@
 include_once(dirname(__FILE__).'/../config/conf.php');
 
 if(!isset($_SESSION['userName'])){
-    header("Location: ../login.html");
+    header("Location: ".dirname(__FILE__)."/../login.html");
     exit;
 }
 header("Content-type: text/html; charset=utf-8");
@@ -25,6 +25,11 @@ $uploadErrors = array(
 // sql转义
 function sql_escape($str){
     return str_replace("'", "\\'", str_replace("\\", "\\\\", $str));
+}
+
+// csv转义
+function csv_escape($str){
+    return '"'.str_replace('"', '""', $str).'"';
 }
 
 // 递归创建文件夹
